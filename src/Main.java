@@ -1,5 +1,14 @@
+import StudentManagement.*;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+//        Student student = new Student();
+        Management management = new Management();
+
+//        management.addStudent(student);
+//        management.saveFile("student.dat");
+        management.readFile("student.dat");
+        management.print();
+
     }
 }
