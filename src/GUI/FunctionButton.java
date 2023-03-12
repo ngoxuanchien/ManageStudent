@@ -8,16 +8,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-import static GUI.MainWindow.students;
-import static GUI.MainWindow.table;
+import static GUI.MainWindow.*;
 
-public class FunctionButton extends JPanel implements ActionListener  {
+public class FunctionButton extends JPanel implements ActionListener {
     private JButton addButton;
     private JButton deleteButton;
     private JButton updateButton;
     private JButton saveButton;
     private JButton exportButton;
     private JButton importButton;
+    private JButton sortID;
+    private JButton sortMark;
+    private int intSortId = 1;
+    private int intSortMark = 1;
 
     public FunctionButton() {
         addButton = new JButton("Add");
@@ -26,6 +29,8 @@ public class FunctionButton extends JPanel implements ActionListener  {
         saveButton = new JButton("Save");
         exportButton = new JButton("Export");
         importButton = new JButton("Import");
+        sortID = new JButton("Sort ID");
+        sortMark = new JButton("Sort Mark");
 
         addButton.addActionListener(this);
         saveButton.addActionListener(this);
@@ -33,12 +38,16 @@ public class FunctionButton extends JPanel implements ActionListener  {
         updateButton.addActionListener(this);
         exportButton.addActionListener(this);
         importButton.addActionListener(this);
+        sortID.addActionListener(this);
+        sortMark.addActionListener(this);
 
         this.setLayout(new FlowLayout());
         this.add(addButton);
         this.add(updateButton);
         this.add(deleteButton);
         this.add(saveButton);
+//        this.add(sortID);
+//        this.add(sortMark);
         this.add(exportButton);
         this.add(importButton);
     }
@@ -61,7 +70,6 @@ public class FunctionButton extends JPanel implements ActionListener  {
                 File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
                 students.saveFile(file.toString());
             }
-            System.out.println("Save");
         }
 
         if (e.getSource() == exportButton) {
@@ -106,6 +114,28 @@ public class FunctionButton extends JPanel implements ActionListener  {
         if (e.getSource() == deleteButton) {
             String id = table.getSelectedId();
             students.removeStudent(id);
+            table.updateTable();
+        }
+
+        if (e.getSource() == sortID) {
+            if (intSortId == 1) {
+                students.SortIDAscending();
+            } else {
+                students.SortIDDescending();
+            }
+
+            intSortId *= -1;
+            table.updateTable();
+        }
+
+        if (e.getSource() == sortMark) {
+            if (intSortMark == 1) {
+                students.SortMarkAscending();
+            } else {
+                students.SortMarkDescending();
+            }
+
+            intSortMark *= -1;
             table.updateTable();
         }
     }

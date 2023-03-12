@@ -9,16 +9,29 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MainWindow extends JFrame {
 
     public static Management students = new Management();
 
     public static TableStudents table;
+    public static File staticFile = null;
     FunctionButton button;
 
     public MainWindow() {
-        students.readFile("student.dat");
+        JFileChooser fileChooser = new JFileChooser();
+
+        fileChooser.setCurrentDirectory(new File("."));
+
+        int response = fileChooser.showOpenDialog(null);
+
+        if (response == JFileChooser.APPROVE_OPTION) {
+            staticFile = new File(fileChooser.getSelectedFile().getAbsolutePath());
+            students.readFile(staticFile.toString());
+        }
+
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1200, 750);
         this.setLayout(new BorderLayout());
@@ -43,8 +56,9 @@ public class MainWindow extends JFrame {
         this.add(myPanel1, BorderLayout.LINE_START);
         this.add(myPanel2, BorderLayout.LINE_END);
         this.add(button, BorderLayout.PAGE_END);
+        this.setResizable(false);
+//        this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-//        this.pack();
     }
 }

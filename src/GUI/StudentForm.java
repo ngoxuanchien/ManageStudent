@@ -103,7 +103,7 @@ public class StudentForm extends JFrame implements ActionListener {
 
     }
 
-    public StudentForm (Student data) {
+    public StudentForm(Student data) {
         student = data;
         this.setLayout(new BorderLayout());
         this.setSize(500, 500);
@@ -225,22 +225,20 @@ public class StudentForm extends JFrame implements ActionListener {
         }
 
         if (e.getSource() == _saveButton) {
-            if (student != null) {
-                student = new Student(
-                        idTextField.getText(),
-                        fullNameTextField.getText(),
-                        Float.parseFloat(markTextField.getText()),
-                        imageLabel.getIcon().toString(),
-                        addressTextField.getText(),
-                        noteTextField.getText()
-                );
+            student = new Student(
+                    idTextField.getText(),
+                    fullNameTextField.getText(),
+                    Float.parseFloat(markTextField.getText()),
+                    imageLabel.getIcon().toString(),
+                    addressTextField.getText(),
+                    noteTextField.getText()
+            );
 
-                students.addStudent(student);
-                table.updateTable();
+            students.addStudent(student);
+            table.updateTable();
 
-                this.setVisible(false);
-                this.dispose();
-            }
+            this.setVisible(false);
+            this.dispose();
 
         }
     }

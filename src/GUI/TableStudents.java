@@ -27,17 +27,18 @@ public class TableStudents extends JScrollPane {
     }
 
     public String getSelectedId() {
-        return (String)table.getValueAt(table.getSelectedRow(), 0);
+        return (String) table.getValueAt(table.getSelectedRow(), 0);
     }
 
     public void updateTable() {
+
         String[] columnNames = {"ID", "Full Name", "Mark", "Address", "Image", "Note"};
         tableModel = new DefaultTableModel();
         for (int i = 0; i < 6; i++) {
             tableModel.addColumn(columnNames[i]);
         }
 
-        for (Student student: students.getStudents()) {
+        for (Student student : students.getStudents()) {
             Object[] rowData = {
                     student.getID(),
                     student.getFullName(),

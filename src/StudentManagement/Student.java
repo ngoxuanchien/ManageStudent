@@ -167,8 +167,8 @@ public class Student implements Serializable {
     public static Comparator<Student> StudentMarkComparator = new Comparator<Student>() {
         @Override
         public int compare(Student o1, Student o2) {
-            double compareMark1 = ((Student) o1).getMark();
-            double compareMark2 = ((Student) o2).getMark();
+            float compareMark1 = ((Student) o1).getMark();
+            float compareMark2 = ((Student) o2).getMark();
 
             if (compareMark1 == compareMark2) {
                 return 0;
