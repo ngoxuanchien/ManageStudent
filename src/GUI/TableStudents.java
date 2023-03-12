@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static GUI.MainWindow.students;
@@ -59,8 +60,30 @@ public class TableStudents extends JScrollPane {
         sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
         sorter.setSortKeys(sortKeys);
 
+        sorter.setComparator(2, new Comparator<Object>() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                float score1 = (float) o1;
+                float score2 = (float) o2;
+                return Float.compare(score1, score2);
+            }
+        });
+
+        table.setAutoCreateRowSorter(true);
+
+//        TableRowSorter<TableModel> sorter = new TableRowSorter<>(tableModel);
+//        sorter.setComparator(0, Comparator.naturalOrder());
+//
+//        sorter.setSortable(1, false);
+//        sorter.setSortable(3, false);
+//        sorter.setSortable(4, false);
+//        sorter.setSortable(5, false);
+//        table.setRowSorter(sorter);
+
         table.setRowHeight(30);
         table.setCellEditor(null);
         this.setViewportView(table);
     }
+
+
 }
