@@ -17,23 +17,32 @@ public class Student implements Serializable {
     private String Note;
 
     public Student() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Student ID: ");
-        ID = scanner.next();
-        System.out.print("Student name: ");
-        FullName = scanner.nextLine();
-        FullName = scanner.nextLine();
-        System.out.print("Student Mark: ");
-        Mark = scanner.nextFloat();
-        System.out.print("Student Image: ");
-        Image = scanner.next();
-        System.out.print("Student Address: ");
-        Address = scanner.next();
-        System.out.print("Sudent Note: ");
-        Note = scanner.next();
-
-        scanner.close();
+        ID = "";
+        FullName = "";
+        Mark = 0;
+        Image = "";
+        Address = "";
+        Note = "";
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.print("Student ID: ");
+//        ID = scanner.next();
+//        System.out.print("Student name: ");
+//        FullName = scanner.nextLine();
+//        FullName = scanner.nextLine();
+//        System.out.print("Student Mark: ");
+//        Mark = scanner.nextFloat();
+//        System.out.print("Student Image: ");
+//        Image = scanner.nextLine();
+//        Image = scanner.nextLine();
+//        System.out.print("Student Address: ");
+//        Address = scanner.nextLine();
+//        Address = scanner.nextLine();
+//        System.out.print("Sudent Note: ");
+//        Note = scanner.nextLine();
+//        Note = scanner.nextLine();
+//
+//        scanner.close();
     }
 
     public String getID() {

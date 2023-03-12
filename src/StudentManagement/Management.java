@@ -43,6 +43,10 @@ public class Management {
         }
     }
 
+    public Student getStudent(int index) {
+        return _students.get(index);
+    }
+
     public int updateStudent(int index, Student student) {
         try {
             _students.get(index).updateStudent(student);
@@ -51,6 +55,17 @@ public class Management {
             System.out.println(e);
             return 0;
         }
+    }
+
+    public Student removeStudent(String id) {
+        for (int i = 0; i < _students.size(); i++) {
+            if (id.equals(_students.get(i).getID())) {
+                Student student = _students.get(i);
+                _students.remove(i);
+                return student;
+            }
+        }
+        return null;
     }
 
     public int deleteStudent(int index) {
@@ -114,7 +129,7 @@ public class Management {
     public int ImportStudents(String fileName) {
         Path pathToFile = Paths.get(fileName);
 
-        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
 
             String line = br.readLine();
 
@@ -142,7 +157,7 @@ public class Management {
             PrintWriter out = new PrintWriter(csvFile);
 
             for (Student student : _students) {
-                out.printf("%s, %s, %f, %s, %s, %s\n", student.getID(), student.getFullName(), student.getMark(), student.getImage(), student.getAddress(), student.getNote());
+                out.printf("%s,%s,%f,%s,%s,%s\n", student.getID(), student.getFullName(), student.getMark(), student.getImage(), student.getAddress(), student.getNote());
             }
 
             out.close();
@@ -152,5 +167,9 @@ public class Management {
         }
 
         return 1;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return _students;
     }
 }
